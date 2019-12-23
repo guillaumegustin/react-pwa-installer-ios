@@ -1,0 +1,8 @@
+node_modules
+.idea
+*.log
+dist
+yarn-error.log
+
+# Test report for storybook
+jest-test-results.json

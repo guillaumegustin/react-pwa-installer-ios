@@ -1,0 +1,41 @@
+.pwa-install-popup-ios {
+	position: fixed;
+	background-color: white;
+	border-radius: .4em;
+	bottom: 20px;
+	z-index: 999999;
+	transform: translatey(0px);
+	animation: float 6s ease-in-out infinite;
+	width: 90%;
+	margin: auto;
+	left: 5%;
+}
+
+.pwa-install-popup-ios:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: white;
+	border-bottom: 0;
+	margin-left: -20px;
+	margin-bottom: -20px;
+}
+
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
