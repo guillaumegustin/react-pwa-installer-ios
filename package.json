@@ -1,13 +1,9 @@
 {
   "name": "react-pwa-install-ios",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "React component displays a popup for PWA app install on iOS.",
   "author": "Guillaume Gustin <guillaumegustin8@gmail.com>",
   "license": "MIT",
-  "main": "dist/index.js",
-  "files": [
-    "dist/**"
-  ],
   "scripts": {
     "cleanup": "./cleanup && yarn install",
     "test": "jest",
