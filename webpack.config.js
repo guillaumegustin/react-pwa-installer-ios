@@ -1,7 +1,30 @@
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          ecma: undefined,
+          warnings: false,
+          parse: {},
+          compress: {},
+          mangle: true,
+          module: false,
+          output: null,
+          toplevel: false,
+          nameCache: null,
+          ie8: false,
+          keep_classnames: undefined,
+          keep_fnames: true,
+          safari10: false,
+        },
+      }),
+    ],
+  },
   module: {
     rules: [
       {
@@ -41,7 +64,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.scss', '.css', '.js', '.json', '.png', '.gif', '.jpg', '.svg'],
+    extensions: ['.scss', '.js', '.json', '.png', '.gif', '.jpg', '.svg'],
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -49,4 +72,5 @@ module.exports = {
     filename: 'index.js',
     libraryTarget: 'umd',
   },
+  externals: ['react', 'react-dom'],
 };
