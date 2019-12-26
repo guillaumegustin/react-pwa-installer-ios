@@ -1,20 +1,22 @@
 # react-pwa-installer-ios
 
-This simple utils React component allows you to easily display a POPUP for your iOS users, informing that he/she can install your client Progressive web app on his/her phone.
+This simple utils React component allows you to easily display a POPUP for your iOS users, informing that they can install your awesome Progressive web app on their phone.
 
 This component integrate the following logic:
-- The popup will display only on iOS device (iphones, ipads), not in standalone mode
+- The popup prompts **only on iOS devices (iphones, ipads)**
+- The popup shows **only if the app is not running in standalone mode** (this means user already installed the PWA)
 - When the user clicks anywhere, the popup is closed
-- When the popup is closed, timestamp is stored in localstorage. Pop up won't open up for the next 10 days.
+- Once the popup is closed **Pop up won't open up for the next 10 days** (timestamp is stored in localstorage.)
 
-![demo image](https://raw.githubusercontent.com/guillaumegustin/react-pwa-installer-ios/master/screen_demo.jpeg)
+Example on IPHONE device:
+![demo on iphone](https://raw.githubusercontent.com/guillaumegustin/react-pwa-installer-ios/master/screen_demo.jpeg)
 
-This component handles specific popup position for Ipad in order to match the 'share button' position:
-![demo image](https://raw.githubusercontent.com/guillaumegustin/react-pwa-installer-ios/master/screen_demo_ipad.png)
+Example on IPAD device: The popup prompts on the top right hand corner to match the 'share button' position:
+![demo on ipad](https://raw.githubusercontent.com/guillaumegustin/react-pwa-installer-ios/master/screen_demo_ipad_en.jpg)
 
 ## getting started
-`npm install -s react-pwa-install-ios`
-or 
+`npm install -s react-pwa-install-ios`  
+or  
 `yarn add react-pwa-install-ios`
 
 Then in your app:
