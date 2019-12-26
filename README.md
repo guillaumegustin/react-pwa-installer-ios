@@ -7,10 +7,10 @@ This component integrate the following logic:
 - When the user clicks anywhere, the popup is closed
 - When the popup is closed, timestamp is stored in localstorage. Pop up won't open up for the next 10 days.
 
-![demo image](https://github.com/guillaumegustin/react-pwa-installer-ios/blob/master/screen_demo.jpeg)
+![demo image](https://raw.githubusercontent.com/guillaumegustin/react-pwa-installer-ios/master/screen_demo.jpeg)
 
 This component handles specific popup position for Ipad in order to match the 'share button' position:
-![demo image](https://github.com/guillaumegustin/react-pwa-installer-ios/blob/master/screen_demo_ipad.png)
+![demo image](https://raw.githubusercontent.com/guillaumegustin/react-pwa-installer-ios/master/screen_demo_ipad.png)
 
 ## getting started
 `npm install -s react-pwa-install-ios`
