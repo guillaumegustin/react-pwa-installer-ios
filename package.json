@@ -1,6 +1,6 @@
 {
   "name": "react-pwa-install-ios",
-  "version": "1.0.8",
+  "version": "1.0.12",
   "description": "React component displays a popup for PWA app install on iOS.",
   "author": "Guillaume Gustin <guillaumegustin8@gmail.com>",
   "license": "MIT",
@@ -53,19 +53,20 @@
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.37.0",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.6",
+    "terser-webpack-plugin": "^2.1.0"
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "moment": "^2.24.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-input-range": "^1.3.0",
-    "react-router-dom": "4.2.2",
-    "terser-webpack-plugin": "^2.1.0"
+    "moment": "^2.24.0"
   },
   "peerDependencies": {
+  },
+  "resolutions": {
     "eslint": "6.x",
+    "react": "^16.8.6",
+    "prop-types": "^15.7.2",
+    "react-router-dom": "4.2.2",
     "eslint-config-prettier": "6.x",
     "eslint-plugin-prettier": "3.x",
     "eslint-plugin-react": "7.x",
