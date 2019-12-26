@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from "moment";
+import classnames from 'classnames';
 
 import translations from './locales.json';
 import shareIcon from './ic_iphone_share.png';
@@ -16,6 +17,10 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const isIos = () => {
 	const userAgent = window.navigator.userAgent.toLowerCase();
 	return /iphone|ipad|ipod/.test( userAgent );
+};
+const isIPad = () => {
+	const userAgent = window.navigator.userAgent.toLowerCase();
+	return /ipad/.test( userAgent );
 };
 const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
@@ -61,9 +66,8 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) =
 			if (t) clearTimeout(t);
 		};
 	}, []);
-
 	return isOpen ? (
-		<div style={styles} className="pwa-install-popup-ios">
+		<div style={styles} className={classnames('pwa-install-popup-ios', {'ipad-device': isIPad()})}>
 			{children ? children : (
         <div className="pwa-install-popup-ios-content">
           <div className="left">

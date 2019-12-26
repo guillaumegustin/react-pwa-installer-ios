@@ -29,20 +29,40 @@
       }
     }
   }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: white;
+    border-bottom: 0;
+    margin-left: -20px;
+    margin-bottom: -20px;
+  }
 }
-
-.pwa-install-popup-ios:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 20px solid transparent;
-	border-top-color: white;
-	border-bottom: 0;
-	margin-left: -20px;
-	margin-bottom: -20px;
+.pwa-install-popup-ios.ipad-device {
+  top: 30px;
+  bottom: auto;
+  right: 5%;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: auto;
+    top: -5px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-bottom-color: white;
+    border-top: 0;
+    border-right: 0;
+    margin-left: 40%;
+    margin-top: -15px;
+    margin-bottom: auto;
+  }
 }
 
 @keyframes float {
