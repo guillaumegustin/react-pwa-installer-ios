@@ -9,7 +9,7 @@ This component integrate the following logic:
 
 ![demo image](https://github.com/guillaumegustin/react-pwa-installer-ios/blob/master/screen_demo.jpeg)
 
-This component handles specific popup positon for Ipad to match the 'share button' position:
+This component handles specific popup position for Ipad in order to match the 'share button' position:
 ![demo image](https://github.com/guillaumegustin/react-pwa-installer-ios/blob/master/screen_demo_ipad.png)
 
 ## getting started
