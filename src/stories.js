@@ -21,15 +21,6 @@ storiesOf('PwaInstallPopupIOS', module)
     </PwaInstallPopupIOS>
   ))
   .add('display only iOS', () => (
-    <PwaInstallPopupIOS>
-      <div style={{
-        padding: '15px 30px',
-        backgroundColor: 'blue',
-        color: 'white',
-        textAlign: 'center',
-      }}> 
-        Hey ! I am the PwaInstallPopupIOS component.
-        I should display only on iOS device, not in standalone mode
-      </div>
+    <PwaInstallPopupIOS force lang="en" appIcon="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
     </PwaInstallPopupIOS>
   ));

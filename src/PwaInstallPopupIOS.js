@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from "moment";
 
+import translations from './locales.json';
+import shareIcon from './ic_iphone_share.png';
+
 import './styles.scss';
 
 const LOCAL_STORAGE_KEY = 'pwa_popup_display';
 const NB_DAYS_EXPIRE = 10;
 const TIMEOUT_FOR_DISPLAY_SECONDS = 10;
+const DEFAULT_LANG = 'en';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const isIos = () => {
@@ -25,8 +29,9 @@ const saveLastPwaDisplay = () => {
 	window.localStorage.setItem(LOCAL_STORAGE_KEY, moment().valueOf());
 };
 
-const PwaInstallPopupIOS = ({ styles, children, force }) => {
-	const [isOpen, setOpened] = useState(false);
+const PwaInstallPopupIOS = ({ lang, appIcon, styles, children, force }) => {
+  const [isOpen, setOpened] = useState(false);
+  const languageCode = Object.keys(translations).includes(lang) ? lang : DEFAULT_LANG;
 
 	const clickListener = () => {
 		setOpened(v => {
@@ -59,20 +64,34 @@ const PwaInstallPopupIOS = ({ styles, children, force }) => {
 
 	return isOpen ? (
 		<div style={styles} className="pwa-install-popup-ios">
-			{children}
+			{children ? children : (
+        <div className="pwa-install-popup-ios-content">
+          <div className="left">
+            <img className="appIcon" src="/images/app-icon-180.png" />
+            <i className="fa fa-plus-square" aria-hidden="true"></i>
+          </div>
+          <div className="right">
+            {translations[languageCode].PWA_POPUP_PART1}
+            <span><img className="small" src={shareIcon} /></span>
+            <br/>
+            {translations[languageCode].PWA_POPUP_PART2}
+          </div>
+        </div>
+      )}
 		</div>
 	) : null;
 };
 
 PwaInstallPopupIOS.propTypes = {
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 	styles: PropTypes.object,
 	force: PropTypes.bool,
 };
 
 PwaInstallPopupIOS.defaultProps = {
 	styles: null,
-	force: false,
+  force: false,
+  children: null,
 };
 
 export default PwaInstallPopupIOS;
