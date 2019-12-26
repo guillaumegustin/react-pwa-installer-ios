@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
 
-import PwaInstallPopupIOS from './PwaInstallPopupIOS';
+import PwaInstallPopupIOS from './index';
 
 storiesOf('PwaInstallPopupIOS', module)
   .addDecorator((storyFn, context) => withConsole()(storyFn)(context))
@@ -24,3 +24,4 @@ storiesOf('PwaInstallPopupIOS', module)
     <PwaInstallPopupIOS force lang="en" appIcon="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
     </PwaInstallPopupIOS>
   ));
+  

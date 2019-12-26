@@ -1,6 +1,6 @@
 # react-pwa-installer-ios
 
-This simple utils React component allows you to easily display a POP for your iOS users, informing that he/she can install the app on the phone.
+This simple utils React component allows you to easily display a POPUP for your iOS users, informing that he/she can install the app on the phone.
 This component integrate the following logic:
 - The popup will display only on iOS device, not in standalone mode
 - When the user clicks anywhere, the popup is closed

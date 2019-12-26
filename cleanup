@@ -1,0 +1,24 @@
+#!/bin/bash
+cleanup(){
+#  find . -type f -name 'yarn.lock' -exec rm {} + > /dev/null 2>&1;
+#  find . -type f -name 'package-lock.json' -exec rm {} + > /dev/null 2>&1;
+  find . -name "node_modules" -type d -prune -exec rm -rf '{}' + > /dev/null 2>&1;
+}
+
+echo "Alright let's re-install this !";
+echo "Cleaning...";
+cleanup
+
+echo "installing dependencies...";
+yarn install > /dev/null 2>&1;
+
+echo "building ui lib..."
+cd packages/decathlon-react-ui
+yarn build > /dev/null
+
+echo "building utils..."
+cd ../decatmaps-utils
+yarn build > /dev/null
+
+cd ../..
+echo "We are done ! 🤘"
