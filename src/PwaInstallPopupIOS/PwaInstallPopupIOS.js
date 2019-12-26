@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from "moment";
 
+import translations from './locales.json';
+import shareIcon from './ic_iphone_share.png';
+
 import './styles.scss';
 
 const LOCAL_STORAGE_KEY = 'pwa_popup_display';
 const NB_DAYS_EXPIRE = 10;
-const TIMEOUT_FOR_DISPLAY_SECONDS = 10;
+const DEFAULT_DELAY_FOR_DISPLAY_SECONDS = 10;
+const DEFAULT_LANG = 'en';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const isIos = () => {
@@ -25,8 +29,9 @@ const saveLastPwaDisplay = () => {
 	window.localStorage.setItem(LOCAL_STORAGE_KEY, moment().valueOf());
 };
 
-const PwaInstallPopupIOS = ({ styles, children, force }) => {
-	const [isOpen, setOpened] = useState(false);
+const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) => {
+  const [isOpen, setOpened] = useState(false);
+  const languageCode = Object.keys(translations).includes(lang) ? lang : DEFAULT_LANG;
 
 	const clickListener = () => {
 		setOpened(v => {
@@ -50,7 +55,7 @@ const PwaInstallPopupIOS = ({ styles, children, force }) => {
 			if (force || (isIos() && !isInStandaloneMode() && checkLastPwaDisplay())) {
 				setOpened(true);
 			}
-		}, TIMEOUT_FOR_DISPLAY_SECONDS * 1000);
+		}, delay * 1000);
 		return () => {
 			window.removeEventListener('click', clickListener);
 			if (t) clearTimeout(t);
@@ -59,20 +64,38 @@ const PwaInstallPopupIOS = ({ styles, children, force }) => {
 
 	return isOpen ? (
 		<div style={styles} className="pwa-install-popup-ios">
-			{children}
+			{children ? children : (
+        <div className="pwa-install-popup-ios-content">
+          <div className="left">
+            <img className="appIcon" src={appIcon} />
+          </div>
+          <div className="right">
+            {translations[languageCode].PWA_POPUP_PART1}
+            <span><img className="small" src={shareIcon} /></span>
+            <br/>
+            {translations[languageCode].PWA_POPUP_PART2}
+          </div>
+        </div>
+      )}
 		</div>
 	) : null;
 };
 
 PwaInstallPopupIOS.propTypes = {
-	children: PropTypes.node.isRequired,
+  lang: PropTypes.oneOf(['en', 'fr']),
+	children: PropTypes.node,
 	styles: PropTypes.object,
-	force: PropTypes.bool,
+  force: PropTypes.bool,
+  appIcon: PropTypes.string,
+  delay: PropTypes.number,
 };
 
 PwaInstallPopupIOS.defaultProps = {
 	styles: null,
-	force: false,
+  force: false,
+  children: null,
+  appIcon: null,
+  delay: DEFAULT_DELAY_FOR_DISPLAY_SECONDS,
 };
 
 export default PwaInstallPopupIOS;

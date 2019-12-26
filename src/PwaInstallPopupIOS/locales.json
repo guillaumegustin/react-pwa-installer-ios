@@ -1,0 +1,10 @@
+{
+  "fr": {
+    "PWA_POPUP_PART1": "Pour installer cette webapp sur votre téléphone: Ouvrir dans Safari le menu Partage",
+    "PWA_POPUP_PART2": "puis sélectionnez 'Sur l'écran d'accueil'"
+  },
+  "en": {
+    "PWA_POPUP_PART1": "To install this web app on your phone: open from Safari the share menu",
+    "PWA_POPUP_PART2": "then select 'Add to Homescreen'"
+  }
+}

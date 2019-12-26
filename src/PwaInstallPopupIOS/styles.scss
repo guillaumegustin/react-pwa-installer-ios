@@ -8,7 +8,27 @@
 	animation: float 6s ease-in-out infinite;
 	width: 90%;
 	margin: auto;
-	left: 5%;
+  left: 5%;
+
+  .pwa-install-popup-ios-content {
+    padding: 15px;
+    display: flex;
+    justify-content: row;
+    .left {
+      flex: 1;
+      position: relative;
+      img.appIcon {
+        height: 50px;
+      }
+    }
+    .right {
+      flex: 3;
+      img.small {
+        height: 20px;
+        margin: 0 5px;
+      }
+    }
+  }
 }
 
 .pwa-install-popup-ios:after {
