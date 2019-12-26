@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
 
-import PwaInstallPopupIOS from './PwaInstallPopupIOS';
+import PwaInstallPopupIOS from './index';
 
 storiesOf('PwaInstallPopupIOS', module)
   .addDecorator((storyFn, context) => withConsole()(storyFn)(context))
@@ -33,3 +33,4 @@ storiesOf('PwaInstallPopupIOS', module)
       </div>
     </PwaInstallPopupIOS>
   ));
+  
