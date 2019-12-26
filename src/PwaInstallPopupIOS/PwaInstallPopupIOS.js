@@ -34,6 +34,17 @@ const saveLastPwaDisplay = () => {
 	window.localStorage.setItem(LOCAL_STORAGE_KEY, moment().valueOf());
 };
 
+const addClickListener = (clickListener) => {
+  window.addEventListener('click', clickListener);
+  window.addEventListener('touchstart', clickListener);
+  window.addEventListener('touch', clickListener);
+}
+const removeClickListener = (clickListener) => {
+  window.removeEventListener('click', clickListener);
+  window.removeEventListener('touchstart', clickListener);
+  window.removeEventListener('touch', clickListener);
+}
+
 const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) => {
   const [isOpen, setOpened] = useState(false);
   const languageCode = Object.keys(translations).includes(lang) ? lang : DEFAULT_LANG;
@@ -42,7 +53,7 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) =
 		setOpened(v => {
 			if(v) {
 				saveLastPwaDisplay();
-				window.removeEventListener('click', clickListener);
+        removeClickListener(clickListener);
 				return false;
 			}
 			return v;
@@ -50,7 +61,7 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) =
 	};
 
 	useEffect(() => {
-		window.addEventListener('click', clickListener);
+    addClickListener(clickListener)
 		const t = setTimeout(() => {
 			if (isDevelopment) {
 				console.log('isIOS: ', isIos());
@@ -62,7 +73,7 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) =
 			}
 		}, delay * 1000);
 		return () => {
-			window.removeEventListener('click', clickListener);
+      removeClickListener(clickListener);
 			if (t) clearTimeout(t);
 		};
 	}, []);
