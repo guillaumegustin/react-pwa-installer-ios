@@ -1,11 +1,15 @@
 {
   "name": "react-pwa-install-ios",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React component displays a simple popup for PWA app install on iOS.",
-  "author": "Guillaume Gustin <guillaumegustin8@gmail.com>",
+  "author": "Guillaume Gustin <github@guillaumegustin>",
   "license": "MIT",
   "private": false,
-  "github": "https://github.com/guillaumegustin/react-pwa-installer-ios",
+  "homepage": "https://github.com/guillaumegustin/react-pwa-installer-ios",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillaumegustin/react-pwa-installer-ios.git",
+  },
   "main": "./dist/index.js",
   "scripts": {
     "cleanup": "./cleanup && yarn install",
