@@ -8,7 +8,7 @@
   "homepage": "https://github.com/guillaumegustin/react-pwa-installer-ios",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guillaumegustin/react-pwa-installer-ios.git",
+    "url": "git+https://github.com/guillaumegustin/react-pwa-installer-ios.git"
   },
   "main": "./dist/index.js",
   "scripts": {
