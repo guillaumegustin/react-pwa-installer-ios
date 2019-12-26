@@ -9,30 +9,55 @@ This component integrate the following logic:
 ![demo image](https://github.com/guillaumegustin/react-pwa-installer-ios/blob/master/screen_demo.png)
 
 ## getting started
-- clone repo
-- `yarn install`
-- Launch storybook with `yarn storybook`
+`npm install -s react-pwa-install-ios`
+or 
+`yarn add react-pwa-install-ios`
 
-## How to use
+Then in your app:
 ```js
-import PwaInstallPopupIOS from 'PwaInstallPopupIOS';
+import PwaInstallPopupIOS from 'react-pwa-install-ios';
 
-const MyComponent = ({ t }) => {
+const MyComponent = () => {
   return (
-    <PwaInstallPopupIOS>
-      <div className="pwa-popup">
-        <div className="left">
-	  <img className="appIcon" src="/images/app-icon-180.png" />
-	  <i className="fa fa-plus-square" aria-hidden="true"></i>
-	</div>
-	<div className="right">
-	  To install this web app on your phone: open the share menu
-	  <span><img className="small" src="/images/ic_iphone_share.png"/></span>
-	  <br/>
-	  then select 'Add to Homescreen'
-	</div>
-      </div>
+    <PwaInstallPopupIOS 
+      delay={3}
+      lang="en"
+      appIcon="https://my/icon/url.png">
     </PwaInstallPopupIOS>
   );
 };
 ```
+You can also setup your own content for the pop up:
+```js
+  <PwaInstallPopupIOS>
+    <div 
+      delay={0}
+      style={{
+        padding: '15px 30px',
+        backgroundColor: 'blue',
+        color: 'white',
+        textAlign: 'center',
+      }}
+    > 
+      Hey ! I am the PwaInstallPopupIOS component.
+      without the 'force=true' props, I will display only on iOS device,
+      not in standalone mode.
+    </div>
+  </PwaInstallPopupIOS>
+```
+### Modules available props
+- delay (number): number of seconds to wait for the popup to be displayed.
+- force (boolean): set to true to force the display of the popup on any client, even non apple/safari device. This can be usefull for development / testing purpose.
+- style (object): set custom style the popup container
+- lang (string): language for which to display the modal default content. Currently supported: 'fr', 'en'.
+
+## Run locally and contribute
+- clone repo
+- `yarn install`
+- Test component by launching storybook with `yarn storybook`
+- Feel free to add any new language defined in `locales.js`
+- Suggest any improvement by submitting a Pull request !
+
+## contributors
+[Guillaume Gustin](https://github.com/guillaumegustin)
+
