@@ -9,7 +9,7 @@ import './styles.scss';
 
 const LOCAL_STORAGE_KEY = 'pwa_popup_display';
 const NB_DAYS_EXPIRE = 10;
-const TIMEOUT_FOR_DISPLAY_SECONDS = 10;
+const DEFAULT_DELAY_FOR_DISPLAY_SECONDS = 10;
 const DEFAULT_LANG = 'en';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -29,7 +29,7 @@ const saveLastPwaDisplay = () => {
 	window.localStorage.setItem(LOCAL_STORAGE_KEY, moment().valueOf());
 };
 
-const PwaInstallPopupIOS = ({ lang, appIcon, styles, children, force }) => {
+const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) => {
   const [isOpen, setOpened] = useState(false);
   const languageCode = Object.keys(translations).includes(lang) ? lang : DEFAULT_LANG;
 
@@ -55,7 +55,7 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, children, force }) => {
 			if (force || (isIos() && !isInStandaloneMode() && checkLastPwaDisplay())) {
 				setOpened(true);
 			}
-		}, TIMEOUT_FOR_DISPLAY_SECONDS * 1000);
+		}, delay * 1000);
 		return () => {
 			window.removeEventListener('click', clickListener);
 			if (t) clearTimeout(t);
@@ -67,8 +67,7 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, children, force }) => {
 			{children ? children : (
         <div className="pwa-install-popup-ios-content">
           <div className="left">
-            <img className="appIcon" src="/images/app-icon-180.png" />
-            <i className="fa fa-plus-square" aria-hidden="true"></i>
+            <img className="appIcon" src={appIcon} />
           </div>
           <div className="right">
             {translations[languageCode].PWA_POPUP_PART1}
@@ -83,15 +82,20 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, children, force }) => {
 };
 
 PwaInstallPopupIOS.propTypes = {
+  lang: PropTypes.oneOf(['en', 'fr']),
 	children: PropTypes.node,
 	styles: PropTypes.object,
-	force: PropTypes.bool,
+  force: PropTypes.bool,
+  appIcon: PropTypes.string,
+  delay: PropTypes.number,
 };
 
 PwaInstallPopupIOS.defaultProps = {
 	styles: null,
   force: false,
   children: null,
+  appIcon: null,
+  delay: DEFAULT_DELAY_FOR_DISPLAY_SECONDS,
 };
 
 export default PwaInstallPopupIOS;
