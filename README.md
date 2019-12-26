@@ -1,10 +1,11 @@
 # react-pwa-installer-ios
 
-This simple utils React component allows you to easily display a POPUP for your iOS users, informing that he/she can install the app on the phone.
+This simple utils React component allows you to easily display a POPUP for your iOS users, informing that he/she can install your client Progressive web app on his/her phone.
+
 This component integrate the following logic:
-- The popup will display only on iOS device, not in standalone mode
+- The popup will display only on iOS device (iphones, ipads), not in standalone mode
 - When the user clicks anywhere, the popup is closed
-- When the popup is closed, timestamp is stored in localstorage. Pop up won't open for the next 10 days.
+- When the popup is closed, timestamp is stored in localstorage. Pop up won't open up for the next 10 days.
 
 ![demo image](https://github.com/guillaumegustin/react-pwa-installer-ios/blob/master/screen_demo.png)
 
