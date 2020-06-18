@@ -6,6 +6,8 @@ import classnames from 'classnames';
 import translations from './locales.json';
 import shareIcon from './ic_iphone_share.png';
 
+import { isIos, isIPad, isInStandaloneMode, isSafari } from '../helpers/browser';
+
 import './styles.scss';
 
 const LOCAL_STORAGE_KEY = 'pwa_popup_display';
@@ -13,16 +15,6 @@ const NB_DAYS_EXPIRE = 10;
 const DEFAULT_DELAY_FOR_DISPLAY_SECONDS = 10;
 const DEFAULT_LANG = 'en';
 const isDevelopment = process.env.NODE_ENV === 'development';
-
-const isIos = () => {
-	const userAgent = window.navigator.userAgent.toLowerCase();
-	return /iphone|ipad|ipod/.test( userAgent );
-};
-const isIPad = () => {
-	const userAgent = window.navigator.userAgent.toLowerCase();
-	return /ipad/.test( userAgent );
-};
-const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
 const checkLastPwaDisplay = () => {
 	const lastDisplayTimestamp = window.localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -35,25 +27,25 @@ const saveLastPwaDisplay = () => {
 };
 
 const addClickListener = (clickListener) => {
-  window.addEventListener('click', clickListener);
-  window.addEventListener('touchstart', clickListener);
-  window.addEventListener('touch', clickListener);
+	window.addEventListener('click', clickListener);
+	window.addEventListener('touchstart', clickListener);
+	window.addEventListener('touch', clickListener);
 }
 const removeClickListener = (clickListener) => {
-  window.removeEventListener('click', clickListener);
-  window.removeEventListener('touchstart', clickListener);
-  window.removeEventListener('touch', clickListener);
+	window.removeEventListener('click', clickListener);
+	window.removeEventListener('touchstart', clickListener);
+	window.removeEventListener('touch', clickListener);
 }
 
-const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) => {
-  const [isOpen, setOpened] = useState(false);
-  const languageCode = Object.keys(translations).includes(lang) ? lang : DEFAULT_LANG;
+const PwaInstallPopupIOS = ({ lang, appIcon, appName, styles, delay, children, force }) => {
+	const [isOpen, setOpened] = useState(false);
+	const languageCode = Object.keys(translations).includes(lang) ? lang : DEFAULT_LANG;
 
 	const clickListener = () => {
 		setOpened(v => {
-			if(v) {
+			if (v) {
 				saveLastPwaDisplay();
-        removeClickListener(clickListener);
+				removeClickListener(clickListener);
 				return false;
 			}
 			return v;
@@ -61,7 +53,7 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) =
 	};
 
 	useEffect(() => {
-    addClickListener(clickListener)
+		addClickListener(clickListener)
 		const t = setTimeout(() => {
 			if (isDevelopment) {
 				console.log('isIOS: ', isIos());
@@ -73,44 +65,51 @@ const PwaInstallPopupIOS = ({ lang, appIcon, styles, delay, children, force }) =
 			}
 		}, delay * 1000);
 		return () => {
-      removeClickListener(clickListener);
+			removeClickListener(clickListener);
 			if (t) clearTimeout(t);
 		};
 	}, []);
+
+	const apppNameLabel = appName ? appName : translations[languageCode].APP_NAME_DEFAULT;
 	return isOpen ? (
-		<div style={styles} className={classnames('pwa-install-popup-ios', {'ipad-device': isIPad()})}>
+		<div style={styles} className={classnames('pwa-install-popup-ios', { 'ipad-device': isIPad(), 'safari-nav': isSafari() })}>
 			{children ? children : (
-        <div className="pwa-install-popup-ios-content">
-          <div className="left">
-            <img className="appIcon" src={appIcon} />
-          </div>
-          <div className="right">
-            {translations[languageCode].PWA_POPUP_PART1}
-            <span><img className="small" src={shareIcon} /></span>
-            <br/>
-            {translations[languageCode].PWA_POPUP_PART2}
-          </div>
-        </div>
-      )}
+				<div className="pwa-install-popup-ios-content">
+					<div className="left">
+						<img className="appIcon" src={appIcon} />
+					</div>
+					<div className="right">
+						<div>{translations[languageCode].PWA_POPUP_PART1.replace('{{appName}}', apppNameLabel)}</div>
+						<div>{translations[languageCode].PWA_POPUP_PART2.replace('{{appName}}', apppNameLabel)}</div>
+						<div>
+							{translations[languageCode].PWA_POPUP_PART3}
+							<span><img className="small" src={shareIcon} /></span>
+						</div>
+						<div>{translations[languageCode].PWA_POPUP_PART4}</div>
+					</div>
+				</div>
+			)}
 		</div>
 	) : null;
 };
 
 PwaInstallPopupIOS.propTypes = {
-  lang: PropTypes.oneOf(['en', 'fr']),
+	lang: PropTypes.oneOf(['en', 'fr', 'pt', 'nl']),
 	children: PropTypes.node,
 	styles: PropTypes.object,
-  force: PropTypes.bool,
-  appIcon: PropTypes.string,
-  delay: PropTypes.number,
+	force: PropTypes.bool,
+	appIcon: PropTypes.string,
+	delay: PropTypes.number,
+	appName: PropTypes.string,
 };
 
 PwaInstallPopupIOS.defaultProps = {
 	styles: null,
-  force: false,
-  children: null,
-  appIcon: null,
-  delay: DEFAULT_DELAY_FOR_DISPLAY_SECONDS,
+	appName: null,
+	force: false,
+	children: null,
+	appIcon: null,
+	delay: DEFAULT_DELAY_FOR_DISPLAY_SECONDS,
 };
 
 export default PwaInstallPopupIOS;

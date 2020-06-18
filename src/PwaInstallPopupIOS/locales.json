@@ -1,10 +1,30 @@
 {
   "fr": {
-    "PWA_POPUP_PART1": "Pour installer cette webapp sur votre téléphone: Ouvrir dans Safari le menu Partage",
-    "PWA_POPUP_PART2": "puis sélectionnez 'Sur l'écran d'accueil'"
+    "APP_NAME_DEFAULT": "l'application",
+    "PWA_POPUP_PART1": "Pour retrouver {{appName}} depuis votre écran d'accueil",
+    "PWA_POPUP_PART2": "1- Ouvrez {{appName}} sur Safari",
+    "PWA_POPUP_PART3": "2- Cliquez sur Partage",
+    "PWA_POPUP_PART4": "3- Sélectionnez 'Sur l'écran d'accueil'"
   },
   "en": {
-    "PWA_POPUP_PART1": "To install this web app on your phone: open from Safari the share menu",
-    "PWA_POPUP_PART2": "then select 'Add to Homescreen'"
+    "APP_NAME_DEFAULT": "the app",
+    "PWA_POPUP_PART1": "To find {{appName}} app from your home screen",
+    "PWA_POPUP_PART2": "1- Open {{appName}} on Safari",
+    "PWA_POPUP_PART3": "2- Click on Share menu",
+    "PWA_POPUP_PART4": "3- select 'Add to Homescreen'"
+  },
+  "pt": {
+    "APP_NAME_DEFAULT": "a aplicação",
+    "PWA_POPUP_PART1": "Para encontrar o aplicativo {{appName}} na tela inicial",
+    "PWA_POPUP_PART2": "1- Abra o {{appName}} no Safari",
+    "PWA_POPUP_PART3": "2- Clique no menu Compartilhar",
+    "PWA_POPUP_PART4": "3- selecione 'Adicionar à tela inicial'"
+  },
+  "nl": {
+    "APP_NAME_DEFAULT": "de app",
+    "PWA_POPUP_PART1": "Om de {{appName}} -app te vinden op uw startscherm",
+    "PWA_POPUP_PART2": "1- Open {{appName}} in Safari",
+    "PWA_POPUP_PART3": "2- Klik op het menu Delen",
+    "PWA_POPUP_PART4": "3- Selecteer 'Toevoegen aan startscherm'"
   }
 }
