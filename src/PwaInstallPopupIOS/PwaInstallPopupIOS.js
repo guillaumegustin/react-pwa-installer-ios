@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import moment from "moment";
 import classnames from 'classnames';
 
 import translations from './locales.json';
@@ -11,19 +10,19 @@ import { isIos, isIPad, isInStandaloneMode, isSafari } from '../helpers/browser'
 import './styles.scss';
 
 const LOCAL_STORAGE_KEY = 'pwa_popup_display';
-const NB_DAYS_EXPIRE = 10;
+const NB_DAYS_EXPIRE_IN_MS = 10 * 1000 * 60 * 60 * 24;
 const DEFAULT_DELAY_FOR_DISPLAY_SECONDS = 10;
 const DEFAULT_LANG = 'en';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const checkLastPwaDisplay = () => {
-	const lastDisplayTimestamp = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-	if (!lastDisplayTimestamp) return true;
-	const lastDisplayMoment = moment(parseInt(lastDisplayTimestamp));
-	return moment().diff(lastDisplayMoment, 'days') > NB_DAYS_EXPIRE;
+  const lastDisplayTimestamp = window.localStorage.getItem(LOCAL_STORAGE_KEY);
+  if (!lastDisplayTimestamp) return true;
+  const now = new Date().getTime();
+  return now - lastDisplayTimestamp > NB_DAYS_EXPIRE_IN_MS;
 };
 const saveLastPwaDisplay = () => {
-	window.localStorage.setItem(LOCAL_STORAGE_KEY, moment().valueOf());
+  window.localStorage.setItem(LOCAL_STORAGE_KEY, new Date().getTime());
 };
 
 const addClickListener = (clickListener) => {

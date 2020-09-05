@@ -66,8 +66,7 @@
     "terser-webpack-plugin": "^2.1.0"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "moment": "^2.24.0"
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
   },
