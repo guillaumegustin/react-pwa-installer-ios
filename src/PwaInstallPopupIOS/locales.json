@@ -27,4 +27,11 @@
     "PWA_POPUP_PART3": "2- Klik op het menu Delen",
     "PWA_POPUP_PART4": "3- Selecteer 'Toevoegen aan startscherm'"
   }
+  "de": {
+    "APP_NAME_DEFAULT": "Die Anwendung",
+    "PWA_POPUP_PART1": "Um die {{appName}} -app auf deinem Startbildschirm zu installieren",
+    "PWA_POPUP_PART2": "1- Öffne die {{appName}} in Safari",
+    "PWA_POPUP_PART3": "2- Klicke auf dieses Aktionen-Menue",
+    "PWA_POPUP_PART4": "3- Wähle daraus zum 'Home-Bildschirm hinzufügen' aus"
+  }
 }
