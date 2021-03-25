@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import classnames from "classnames";
@@ -6,17 +6,12 @@ import classnames from "classnames";
 import translations from "./locales.json";
 import shareIcon from "./ic_iphone_share.png";
 
-import {
-  isIos,
-  isIPad,
-  isInStandaloneMode,
-  isSafari
-} from "../helpers/browser";
+import {isIos, isIPad, isInStandaloneMode, isSafari} from "../helpers/browser";
 
 import "./styles.scss";
 
 const LOCAL_STORAGE_KEY = "pwa_popup_display";
-const NB_DAYS_EXPIRE = 10;
+const NB_DAYS_EXPIRE = 1;
 const DEFAULT_DELAY_FOR_DISPLAY_SECONDS = 10;
 const DEFAULT_LANG = "en";
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -31,12 +26,12 @@ const saveLastPwaDisplay = () => {
   window.localStorage.setItem(LOCAL_STORAGE_KEY, moment().valueOf());
 };
 
-const addClickListener = clickListener => {
+const addClickListener = (clickListener) => {
   window.addEventListener("click", clickListener);
   window.addEventListener("touchstart", clickListener);
   window.addEventListener("touch", clickListener);
 };
-const removeClickListener = clickListener => {
+const removeClickListener = (clickListener) => {
   window.removeEventListener("click", clickListener);
   window.removeEventListener("touchstart", clickListener);
   window.removeEventListener("touch", clickListener);
@@ -49,7 +44,7 @@ const PwaInstallPopupIOS = ({
   styles,
   delay,
   children,
-  force
+  force,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isOpen, setOpened] = useState(false);
@@ -58,7 +53,7 @@ const PwaInstallPopupIOS = ({
     : DEFAULT_LANG;
 
   const clickListener = () => {
-    setOpened(v => {
+    setOpened((v) => {
       if (v) {
         saveLastPwaDisplay();
         removeClickListener(clickListener);
@@ -100,9 +95,8 @@ const PwaInstallPopupIOS = ({
       style={styles}
       className={classnames("pwa-install-popup-ios", {
         "ipad-device": isIPad(),
-        "safari-nav": isSafari()
-      })}
-    >
+        "safari-nav": isSafari(),
+      })}>
       {children ? (
         children
       ) : (
@@ -144,7 +138,7 @@ PwaInstallPopupIOS.propTypes = {
   force: PropTypes.bool,
   appIcon: PropTypes.string,
   delay: PropTypes.number,
-  appName: PropTypes.string
+  appName: PropTypes.string,
 };
 
 PwaInstallPopupIOS.defaultProps = {
@@ -153,7 +147,7 @@ PwaInstallPopupIOS.defaultProps = {
   force: false,
   children: null,
   appIcon: null,
-  delay: DEFAULT_DELAY_FOR_DISPLAY_SECONDS
+  delay: DEFAULT_DELAY_FOR_DISPLAY_SECONDS,
 };
 
 export default PwaInstallPopupIOS;
