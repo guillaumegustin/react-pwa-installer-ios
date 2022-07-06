@@ -1,6 +1,6 @@
 {
   "name": "react-pwa-install-ios",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "React component displays a simple popup for PWA app install on iOS.",
   "author": "Guillaume Gustin <github@guillaumegustin>",
   "license": "MIT",
